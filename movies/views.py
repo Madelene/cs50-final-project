@@ -12,11 +12,14 @@ URL = f"{BASE_URL}{OMDB['api_key']}"
 
 
 def search(request):
+    """Search the OMDB database (http://www.omdbapi.com/)."""
     if request.method == 'POST':
         query = request.POST.get('q')
         request_url = f"{URL}&s={query}"
         response = requests.get(request_url)
         movies = response.json()
+        total_results = int(movies['totalResults'])
+
         context = {
             'movies': movies['Search']
         }
@@ -40,6 +43,7 @@ def search(request):
 
 
 def watched(request):
+    """Grab and displays movies that have been watched."""
     if request.method == 'GET':
         movies_seen = Movie.objects.all().order_by('title')
         context = {

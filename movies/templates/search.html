@@ -2,6 +2,16 @@
 
 {% block body %}
 
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'watched' %}"><span class="glyphicon glyphicon-user"></span>View Movies I've Seen</a></li>
+        </ul>
+    </div>
+</nav>
+
 <div id="cover">
     <form method="post" action="">
         {% csrf_token %}

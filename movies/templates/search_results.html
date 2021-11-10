@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<table class="table table-striped">
+    <h1>Search Results</h1>
+  <thead>
+    <tr>
+      <th scope="col">Watched</th>
+      <th scope="col">Title</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for movie in movies %}
+    <tr>
+      <td><input type="checkbox" name="watched" />&nbsp;</td>
+      <td class="movie-title">{{ movie.Title }}</td>
+      <td><img src="{{ movie.Poster }}" alt="..." class="img"></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock %}

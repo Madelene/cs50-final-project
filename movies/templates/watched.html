@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'search' %}"><span class="glyphicon glyphicon-user"></span>Return to Search</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div style="padding: 15px; overflow:hidden;">
+        <table class="table table-striped">
+            <h1>These are the movies you've watched</h1>
+          <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Image</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for movie in movies %}
+            <tr>
+              <td class="movie-title">{{ movie.title }}</td>
+              <td><img src="{{ movie.poster }}" alt="Movie Poster Image" class="img"></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+{% endblock %}

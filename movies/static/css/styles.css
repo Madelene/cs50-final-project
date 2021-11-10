@@ -166,20 +166,20 @@ button span:before, button span:after
 }
 
 #ytd-url {
-  display: block;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  padding: 10px 14px;
-  margin: 20px;
-  color: #fff;
-  font-family: Nunito;
-  font-size: 14px;
-  text-decoration: none;
-  background-color: #fbe1e9;
-  border-radius: 4px;
-  box-shadow: 0 10px 20px -5px rgba(255, 117, 117, 0.86);
-  z-index: 125;
+    display: block;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 10px 14px;
+    margin: 20px;
+    color: #fff;
+    font-family: Nunito;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: #fbe1e9;
+    border-radius: 4px;
+    box-shadow: 0 10px 20px -5px rgba(255, 117, 117, 0.86);
+    z-index: 125;
 }
 
 .table {
@@ -187,6 +187,7 @@ button span:before, button span:after
 }
 
 h1 {
+    font-family: Nunito;
     text-align: center;
     width: 100%;
     height: 96px;
@@ -196,10 +197,19 @@ h1 {
 }
 
 .movie-title {
+    font-family: Nunito;
     text-align: center;
     width: 100%;
     height: 96px;
     font-size: 35px;
     line-height: 1;
     color: #5e3737;
+}
+
+a {
+    color: #e16868;
+    font-family: Nunito;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: x-large;
 }

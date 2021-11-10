@@ -1,27 +1,62 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<form action="{% url 'search' %}" method="post" id="watchedform">
+    {% csrf_token %}
 
-<table class="table table-striped">
-    <h1>Search Results</h1>
-  <thead>
-    <tr>
-      <th scope="col">Watched</th>
-      <th scope="col">Title</th>
-      <th scope="col">Image</th>
-    </tr>
-  </thead>
+    <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <strong><li>{{ message }}</li></strong>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 
-  <tbody>
-    {% for movie in movies %}
-    <tr>
-      <td><input type="checkbox" name="watched" />&nbsp;</td>
-      <td class="movie-title">{{ movie.Title }}</td>
-      <td><img src="{{ movie.Poster }}" alt="..." class="img"></td>
-    </tr>
-    {% endfor %}
-  </tbody>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'watched' %}"><span class="glyphicon glyphicon-user"></span>View Movies I've Seen</a></li>
+        </ul>
+      </div>
+    </nav>
 
-</table>
+    <div style="padding: 15px; overflow:hidden;">
+        <table class="table table-striped">
+            <h1>Select the Movies You've Seen</h1>
+          <thead>
+            <tr>
+              <th scope="col">
+                <button type="button" class="btn btn-secondary" onClick="submitWatched()">Add to List</button>
+              </th>
+              <th scope="col">Title</th>
+              <th scope="col">Image</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for movie in movies %}
+            <tr>
+              <td><input type="checkbox"
+                         name="watched"
+                         value="{{movie}}" />&nbsp;</td>
+              <td class="movie-title">{{ movie.Title }}</td>
+              <td><img src="{{ movie.Poster }}" alt="Movie Poster Image" class="img"></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</form>
+
+<script>
+    function submitWatched(){
+        let form = document.querySelector("#watchedform")
+        form.submit()
+    }
+</script>
 
 {% endblock %}

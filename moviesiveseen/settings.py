@@ -15,8 +15,6 @@ from pathlib import Path
 import django_heroku
 import environ
 
-django_heroku.settings(locals())
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,11 +23,6 @@ env = environ.Env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env(
-    "DJANGO_SECRET_KEY",
-    default="django-insecure-o&qja6_b9939^+wh@k2s$u18$ms=#bel(pw&9ty=%)0h101=-h",
-)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -146,3 +139,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 OMDB = {"api_key": "?apikey=c11350e8"}
+
+
+django_heroku.settings(locals())

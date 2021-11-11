@@ -20,6 +20,4 @@ This app will allow one to:
 
 #### Future features
 
-- Sign Up
-- Log In
-- Pagination
+- Pagination from OMDB API as well as in watched list, itself

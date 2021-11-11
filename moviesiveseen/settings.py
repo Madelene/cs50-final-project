@@ -12,16 +12,21 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+env = environ.Env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o&qja6_b9939^+wh@k2s$u18$ms=#bel(pw&9ty=%)0h101=-h'
-
+SECRET_KEY = env(
+    "DJANGO_SECRET_KEY",
+    default="django-insecure-o&qja6_b9939^+wh@k2s$u18$ms=#bel(pw&9ty=%)0h101=-h",
+)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -117,6 +122,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+# EMAIL SETTINGS
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+DEFAULT_FROM_EMAIL = 'noreply@moviesiveseen.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+
+EMAIL_HOST_USER = 'EMAIL_HOST_USER'
+EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD'
+EMAIL_USE_TLS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

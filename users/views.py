@@ -32,7 +32,7 @@ def movies_login(request):
         if user is not None:
             login(request, user)
 
-            return redirect('movies:search')
+            return redirect('search')
         else:
             messages.info(request, 'Username or Password is incorrect')
 

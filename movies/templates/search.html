@@ -6,6 +6,9 @@
   <div class="container-fluid">
     <div class="navbar-header">
     </div>
+        <ul class="nav navbar-nav navbar-left mr-auto">
+          <li><a href="{% url 'users:movies_logout' %}"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="{% url 'watched' %}"><span class="glyphicon glyphicon-user"></span>View Movies I've Seen</a></li>
         </ul>

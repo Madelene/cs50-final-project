@@ -35,39 +35,43 @@ def search(request):
 
     if request.method == 'POST':
         query = request.POST.get('q')
-        movies = main_request(query, 1)
+        try:
+            movies = main_request(query, 1)
 
-        movies_list = []
-        for page in range(1, get_total_pages(movies) + 1):
-            movies = main_request(query, page)
-            movies_list.append(movies['Search'])
-        # movies_list returns a list of lists of objects.
-        # Needed to flatten that list
-        flat_movies_list = [item for sublist in movies_list for item in sublist]
-        print(flat_movies_list)
-        print(len(flat_movies_list))
-        context = {
-            'movies': flat_movies_list,
-        }
+            movies_list = []
+            for page in range(1, get_total_pages(movies) + 1):
+                movies = main_request(query, page)
+                movies_list.append(movies['Search'])
+            # movies_list returns a list of lists of objects.
+            # Needed to flatten that list
+            flat_movies_list = [item for sublist in movies_list for item in sublist]
 
-        watched_movies = request.POST.getlist('watched')
-        json_str = [m.replace("\'", "\"") for m in watched_movies]
+            context = {
+                'movies': flat_movies_list,
+            }
 
-        user = User.objects.get(username=request.user.username)
+            watched_movies = request.POST.getlist('watched')
+            json_str = [m.replace("\'", "\"") for m in watched_movies]
 
-        for m in json_str:
-            title = json.loads(m)['Title']
-            poster = json.loads(m)['Poster']
+            user = User.objects.get(username=request.user.username)
 
-            movie = Movie.objects.create(
-                title=title,
-                poster=poster,
-                has_seen=True,
-            )
-            user.movies.add(movie)
-            user.save()
-            msg = f"{title} is saved to your watched list."
-            messages.success(request, msg)
+            for m in json_str:
+                title = json.loads(m)['Title']
+                poster = json.loads(m)['Poster']
+
+                movie = Movie.objects.create(
+                    title=title,
+                    poster=poster,
+                    has_seen=True,
+                )
+                user.movies.add(movie)
+                user.save()
+                msg = f"{title} is saved to your watched list."
+                messages.success(request, msg)
+        except KeyError:
+            messages.error(request, 'This movie does not exist in our database. Please try another one!')
+            return redirect('search')
+
         return render(request, 'search_results.html', context)
 
     return render(request, 'search.html')

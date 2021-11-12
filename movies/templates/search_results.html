@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
 <form action="{% url 'search' %}" method="post" id="watchedform">
     {% csrf_token %}
 
@@ -28,8 +29,8 @@
     </nav>
 
     <div style="padding: 15px; overflow:hidden;">
-        <table class="table table-striped">
-            <h1>Select the Movies You've Seen</h1>
+        <table class="table table-striped table-responsive">
+            <h1>Select the movies you've seen</h1>
           <thead>
             <tr>
               <th scope="col">

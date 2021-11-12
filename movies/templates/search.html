@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-collapse">
   <div class="container-fluid">
     <div class="navbar-header">
     </div>
@@ -14,6 +14,16 @@
         </ul>
     </div>
 </nav>
+
+<div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <strong><li>{{ message }}</li></strong>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
 
 <div id="cover">
     <form method="post" action="">

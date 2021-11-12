@@ -3,7 +3,7 @@ from django.db import models
 
 class Movie(models.Model):
     title = models.CharField(max_length=255)
-    poster = models.ImageField()
+    poster = models.ImageField(max_length=255)
     has_seen = models.BooleanField(default=False)
     user_id = models.IntegerField(null=True, blank=True)
 

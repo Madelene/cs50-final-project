@@ -26,7 +26,7 @@
             {% for movie in movies %}
             <tr>
               <td class="movie-title">{{ movie.title }}</td>
-              <td><img src="{{ movie.poster }}" alt="Movie Poster Image" class="img"></td>
+              <td><img src="{{ movie.poster }}" alt="Movie Poster Image" class="img" display="block" width=auto height="150"></td>
             </tr>
             {% endfor %}
           </tbody>
